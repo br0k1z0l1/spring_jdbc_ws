@@ -20,7 +20,14 @@ public class DataTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        List<Country> countryList = template.query("SELECT * FROM country", (rs, rowNum) -> new Country(rs.getString("code"), rs.getString("countryname"), rs.getBoolean("in_eu")));
+        List<Country> countryList = template.query(
+                "SELECT * FROM country",
+                (rs, rowNum) -> new Country(
+                        rs.getString("code"),
+                        rs.getString("countryname"),
+                        rs.getBoolean("in_eu")
+                )
+        );
         for (Country country : countryList) {
             System.out.println(country);
         }
