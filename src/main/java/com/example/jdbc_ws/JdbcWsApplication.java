@@ -1,5 +1,6 @@
 package com.example.jdbc_ws;
 
+import com.example.jdbc_ws.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -37,7 +38,4 @@ class CountryPrinter implements CommandLineRunner {
 
         countries.forEach(System.out::println);
     }
-}
-
-record Country(String code, String countryName, boolean inEu) {
 }
