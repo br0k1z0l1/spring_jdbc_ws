@@ -16,7 +16,7 @@ public record BuildingController(BuildingService buildingService) {
         return buildingService.findAll();
     }
     @GetMapping("/buildings/{countrycode}")
-    public List<Building> findByCountryCode(@PathVariable String countryCode) {
+    public List<Building> findByCountryCode(@PathVariable("countrycode") String countryCode) {
         return buildingService.findByCountryCode(countryCode);
     }
 
