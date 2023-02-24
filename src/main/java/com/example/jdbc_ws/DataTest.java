@@ -2,7 +2,6 @@ package com.example.jdbc_ws;
 
 import com.example.jdbc_ws.dao.BuildingDAO;
 import com.example.jdbc_ws.dao.CountryDAO;
-import com.example.jdbc_ws.model.Building;
 import com.example.jdbc_ws.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,15 +26,27 @@ public class DataTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+
+        System.out.println("-".repeat(80));
+        System.out.println("All countries:");
         List<Country> countryList = countryDAO.getCountries();
         for (Country country : countryList) {
             System.out.println(country);
         }
-        List<Building> buildingList = buildingDAO.findAll();
-        buildingList.forEach(System.out::println);
-        List<Building> buildingListByCountryCode = buildingDAO.findByCountryCode("HU");
-        buildingListByCountryCode.forEach(System.out::println);
-        buildingDAO.changeCountry("MOL Campus", "FR");
+
+        System.out.println("-".repeat(80));
+        System.out.println("All buildings:");
+        buildingDAO.findAll().forEach(System.out::println);
+
+        System.out.println("-".repeat(80));
+        System.out.println("All hungarian buildings:");
+        buildingDAO.findByCountryCode("HU").forEach(System.out::println);
+
+        System.out.println("-".repeat(80));
+        System.out.println("All french buildings (Mol campus changed to french):");
+        buildingDAO.changeCountry("Mol Campus", "FR");
         buildingDAO.findByCountryCode("FR").forEach(System.out::println);
+        System.out.println("-".repeat(80));
+
     }
 }
